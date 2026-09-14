@@ -66,6 +66,50 @@ def show_menu():
 
 
 # ------------------------------------------------------
+# 1. 프롬프트 추가
+# ------------------------------------------------------
+def add_prompt():
+    print("\n=== 프롬프트 추가 ===")
+
+    # 제목: 비어있으면 다시 입력
+    while True:
+        title = input("제목: ").strip()
+        if title:
+            break
+        print("제목은 비워둘 수 없습니다. 다시 입력하세요.")
+
+    # 내용: 비어있으면 다시 입력
+    while True:
+        content = input("내용: ").strip()
+        if content:
+            break
+        print("내용은 비워둘 수 없습니다. 다시 입력하세요.")
+
+    # 카테고리: 목록에서 선택하거나 직접 입력
+    print("\n카테고리 선택:")
+    for i, c in enumerate(CATEGORIES, start=1):
+        print(f"{i}) {c}")
+    choice = input("선택 (번호 또는 직접 입력): ").strip()
+
+    if choice.isdigit() and 1 <= int(choice) <= len(CATEGORIES):
+        category = CATEGORIES[int(choice) - 1]
+    elif choice:
+        category = choice
+    else:
+        category = "기타"
+
+    # 리스트에 딕셔너리로 추가 (즐겨찾기 기본값 False)
+    prompts.append({
+        "title": title,
+        "content": content,
+        "category": category,
+        "favorite": False,
+    })
+    print("\n프롬프트가 추가되었습니다!")
+
+
+
+# ------------------------------------------------------
 # 메인 루프
 # ------------------------------------------------------
 def main():
@@ -73,11 +117,13 @@ def main():
         show_menu()
         choice = input("선택: ").strip()
 
-        if choice == "0":
+        if choice == "1":
+            add_prompt()
+        elif choice == "0":
             print("\n프로그램을 종료합니다. 안녕히 가세요!")
             break
         else:
-            print("\n(아직 준비 중인 기능입니다)")
+            print("\n잘못된 번호입니다. 다시 선택하세요.")
 
 
 if __name__ == "__main__":
