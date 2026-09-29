@@ -53,3 +53,8 @@ python prompt_manager.py
 - [페르소나] IT 컨설턴트 페르소나
 - [자동화] 뉴스 요약 프롬프트
 - [영상 생성] 광고 스크립트 작성
+
+- 
+## 작성자
+
+- GitHub: [steelreto](https://github.com/steelreto)
