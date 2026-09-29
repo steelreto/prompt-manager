@@ -108,6 +108,24 @@ def add_prompt():
     print("\n프롬프트가 추가되었습니다!")
 
 
+# ------------------------------------------------------
+# 즐겨찾기 표시용 별 문자 반환 (도우미 함수)
+# ------------------------------------------------------
+def star(prompt):
+    return " ⭐" if prompt["favorite"] else ""
+
+
+# ------------------------------------------------------
+# 2. 프롬프트 목록
+# ------------------------------------------------------
+def show_list():
+    print("\n=== 프롬프트 목록 ===")
+    if not prompts:
+        print("등록된 프롬프트가 없습니다.")
+        return
+    for i, p in enumerate(prompts, start=1):
+        print(f"{i}. [{p['category']}] {p['title']}{star(p)}")
+    print(f"\n총 {len(prompts)}개의 프롬프트")
 
 # ------------------------------------------------------
 # 메인 루프
@@ -119,6 +137,8 @@ def main():
 
         if choice == "1":
             add_prompt()
+        elif choice == "2":
+            show_list()
         elif choice == "0":
             print("\n프로그램을 종료합니다. 안녕히 가세요!")
             break
