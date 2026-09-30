@@ -63,6 +63,7 @@ def show_menu():
     print("6. 즐겨찾기 관리")
     print("7. 즐겨찾기 목록")
     print("8. 프롬프트 수정")
+    print("9. 프롬프트 삭제")
     print("0. 종료")
 
 
@@ -282,6 +283,31 @@ def edit_prompt():
 
     print(f"\n'{p['title']}' 프롬프트가 수정되었습니다!")
 
+
+# ------------------------------------------------------
+# 9. 프롬프트 삭제 (확인 후 삭제)
+# ------------------------------------------------------
+def delete_prompt():
+    print("\n=== 프롬프트 삭제 ===")
+    if not prompts:
+        print("등록된 프롬프트가 없습니다.")
+        return
+
+    show_list()
+    num = input("\n삭제할 번호 입력: ").strip()
+    if not (num.isdigit() and 1 <= int(num) <= len(prompts)):
+        print("잘못된 번호입니다.")
+        return
+
+    p = prompts[int(num) - 1]
+    confirm = input(f"'{p['title']}' 프롬프트를 삭제할까요? (y/n): ").strip().lower()
+    if confirm != "y":
+        print("삭제를 취소했습니다.")
+        return
+
+    prompts.pop(int(num) - 1)
+    print(f"'{p['title']}' 프롬프트가 삭제되었습니다.")
+
 # ------------------------------------------------------
 # 메인 루프
 # ------------------------------------------------------
@@ -306,6 +332,8 @@ def main():
             show_favorites() 
         elif choice == "8":
             edit_prompt()   
+        elif choice == "9":
+            delete_prompt()
         elif choice == "0":
             print("\n프로그램을 종료합니다. 안녕히 가세요!")
             break
