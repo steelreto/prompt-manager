@@ -191,7 +191,8 @@ def show_detail():
         print("등록된 프롬프트가 없습니다.")
         return
 
-    num = input("번호 입력: ").strip()
+    show_list()
+    num = input("\n상세 보기할 번호 입력: ").strip()
     if not (num.isdigit() and 1 <= int(num) <= len(prompts)):
         print("잘못된 번호입니다.")
         return
@@ -216,7 +217,8 @@ def manage_favorite():
         print("등록된 프롬프트가 없습니다.")
         return
 
-    num = input("프롬프트 번호 입력: ").strip()
+    show_list()
+    num = input("\n즐겨찾기 추가/해제할 번호 입력: ").strip()
     if not (num.isdigit() and 1 <= int(num) <= len(prompts)):
         print("잘못된 번호입니다.")
         return
